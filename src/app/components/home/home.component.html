@@ -1,1 +1,18 @@
-<p>Explorando o Angular!</p>
+<p>Explorando o Angular! {{ name }}</p>
+
+<!-- Botão que chama o método submit() ao ser clicado -->
+<button (click)="submit($event)">Clique</button> 
+
+<!-- Estruturas condicionais para exibir conteúdo dinâmico -->
+@if(deveMostrarTitulo) {
+    <h1>Meu Título!</h1>
+} @else if(name == "Danilo") {
+    <h1>Mudando título para 'Danilo'</h1>
+} @else {
+    <h1>APONTA FALSE</h1>
+}
+
+<!-- Estrutura de repetição para renderizar a lista de itens -->
+@for(item of listItems; track item){
+    <p>{{ item }}</p>
+}
