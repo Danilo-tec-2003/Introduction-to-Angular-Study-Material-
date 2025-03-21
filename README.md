@@ -1,59 +1,77 @@
-# ConhecendoAngular
+# 🚀 Introdução ao Angular
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.3.
+Este repositório contém anotações e códigos sobre conceitos fundamentais do Angular. O objetivo é documentar o aprendizado e facilitar revisões futuras.
 
-## Development server
+## 📌 O que é Angular?
+Angular é um framework para construção de aplicações web SPA (Single Page Application). Ele utiliza TypeScript como linguagem principal e segue o padrão MVC para organização de código.
 
-To start a local development server, run:
+## 📂 Estrutura do Projeto
+Aqui está a estrutura básica de um projeto Angular:
 
-```bash
-ng serve
+```
+📦 nome-do-projeto
+ ┣ 📂 src/
+ ┃ ┣ 📂 app/
+ ┃ ┃ ┣ 📂 components/       # Componentes da aplicação
+ ┃ ┃ ┣ 📂 services/         # Serviços utilizados no projeto
+ ┃ ┃ ┣ app.module.ts        # Módulo principal
+ ┃ ┃ ┣ app.component.ts     # Componente raiz
+ ┃ ┃ ┣ app.routes.ts        # Definição de rotas
+ ┃ ┣ index.html             # Arquivo principal renderizado no navegador
+ ┃ ┣ main.ts                # Ponto de entrada da aplicação
+ ┃ ┣ styles.css             # Estilos globais
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## 🏗️ Componentes no Angular
+Cada componente possui os seguintes arquivos:
 
-## Code scaffolding
+| Arquivo             | Função                                      |
+|---------------------|---------------------------------------------|
+| `.component.html`   | Define o layout do componente.             |
+| `.component.css`    | Estilos específicos do componente.         |
+| `.component.ts`     | Contém a lógica do componente.             |
+| `.component.spec.ts`| Arquivo para testes unitários.             |
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
+### Criando um Novo Componente
+Para criar um novo componente, utilize o comando:
+```sh
+ng generate component components/nome-do-componente
+```
+Em seguida, importe o componente no `app.module.ts` e utilize no HTML:
+```html
+<app-nome-do-componente></app-nome-do-componente>
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## 🔀 Rotas no Angular
+Para definir rotas, utilize `app.routes.ts`:
+```ts
+import { Routes } from '@angular/router';
+import { HomeComponent } from './components/home/home.component';
 
-```bash
-ng generate --help
+const routes: Routes = [
+  { path: 'home', component: HomeComponent },
+];
 ```
+Assim, ao acessar `http://localhost:4200/home`, o `HomeComponent` será exibido.
 
-## Building
+## ⚡ Comandos Essenciais
 
-To build the project run:
+| Comando | Descrição |
+|---------|-----------|
+| `ng new nome-do-projeto` | Cria um novo projeto Angular |
+| `ng serve` | Inicia o servidor de desenvolvimento |
+| `ng generate component nome-do-componente` | Gera um novo componente |
+| `ng g service nome-do-service` | Gera um novo service |
 
-```bash
-ng build
-```
+## 🛠️ Exemplo de Service
+```ts
+import { Injectable } from '@angular/core';
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+@Injectable({
+  providedIn: 'root'
+})
+export class EnviaFormularioService {
+  enviaInformacaoParaoBack(info: string) {
+    console.log("Enviando para o backend:", info);
+  }
+}
